@@ -29,7 +29,7 @@ class ShoppingCart<T extends CartItem> {
   cart: T[] = []
 
   // 2. Implement a method `addToCart` that adds a product to the cart and updates the quantity if it already exists.
-  addToCart(product: T) {
+  addToCart(product: T):string{
     if(product.id in this.cart){
       this.cart.forEach(item => item.id == product.id ? item.quantity+=product.quantity : "")
     }else{
@@ -39,7 +39,7 @@ class ShoppingCart<T extends CartItem> {
   }
 
   // 4. Implement a method `updateQuantity` that updates the quantity of a product in the cart.
-  updateQuantity(id: number, qty: number) {
+  updateQuantity(id: number, qty: number): string {
     let message: string = ""
     this.cart.forEach(item => {
       if(item.id === id){
@@ -51,19 +51,19 @@ class ShoppingCart<T extends CartItem> {
   }
 
   // 6. Implement a method `getTotalPrice` that returns the total cost of all items in the cart.
-  getTotalPrice() {
+  getTotalPrice(): string {
     let total: number = 0
     this.cart.forEach( item => total += (item.price * item.quantity))
     return `The total from your cart is $${total}`
   }
 
   // 5. Implement a method `getProductsOfCategory` that accepts a string and returns an array of items from the cart that match that category.
-  getProductsOfCategory(category: string) {
+  getProductsOfCategory(category: string): {} {
     return this.cart.filter(item => item.category === category)
   }
 
   // 3. Implement a method `removeFromCart` that removes a product from the cart completely.
-  removeFromCart(id: number) {
+  removeFromCart(id: number):  string {
     let message: string =""
     this.cart = this.cart.filter(item => {
       if(item.id !== id ){

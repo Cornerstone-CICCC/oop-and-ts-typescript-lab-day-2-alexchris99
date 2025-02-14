@@ -24,7 +24,7 @@ class Gradebook<T extends Student> {
   students: T[] = []
 
   // 2. Implement a method `addStudent` that adds a new student with an empty grade list.
-  addStudent(student: T) {
+  addStudent(student: T): string {
     this.students.push(student)
     return `${student.name} added to the grade book`
   }
@@ -34,21 +34,21 @@ class Gradebook<T extends Student> {
     return `Grade recorder for ${grade.subject}`
   }
   // 4. Implement a method `getAverageGrade` that returns a student’s average grade.
-  getAverageGrade(id: number) {
+  getAverageGrade(id: number): string {
     let average = 0 
     let grades = 0
     this.students.forEach(student => student.id === id ? student.grades.forEach(subject => {average+=subject.grade, grades++ }) : "")
     return `Average grade ${average/grades}`
   }
   // 5. Implement a method `getStudentGrades` that returns all recorded grades for a student. Formula to get average: sumOfAllGrades / numberOfSubjects.
-  getStudentGrades(id: number) {
+  getStudentGrades(id: number): {} {
     let grades = {}
     this.students.forEach(student => student.id === id ? grades = student.grades : "")
     return grades
   }
 
   // 6. Implement a method `updateSubjectGrade` that updates a subject grade for a student.
-  updateSubjectGrade(id: number, subject: string, newGrade: number) {
+  updateSubjectGrade(id: number, subject: string, newGrade: number) :{} {
     this.students.forEach(student => student.id === id ? student.grades.forEach(grade =>  grade.subject === subject ? grade.grade = newGrade: ""): "")
     return this.students[0].grades
   }

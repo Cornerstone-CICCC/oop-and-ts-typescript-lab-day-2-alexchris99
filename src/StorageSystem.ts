@@ -12,7 +12,7 @@
 class MyStorage<T, U> {
   items: (T | U)[]= []
   // 2. Implement a method `addItem` that stores a new item of a generic type.
-  addItem(item: T | U) {
+  addItem(item: T | U):string {
     let message: string = ''
     this.items.push(item)
     if(item["name"]){
@@ -23,22 +23,22 @@ class MyStorage<T, U> {
     return message
   }
   // 4. Implement a method `getItems` that returns all stored items.
-  getItems() {
+  getItems(): {} {
     return this.items
   }
   // 3. Implement a method `removeItem` that removes an item by value.
-  removeItem(id: T | U) {
+  removeItem(id: T | U): string {
     this.items = this.items.filter(item => item !== id)
     return `${id} removed from the Storage`
   }
   // 5. Implement a method `findItem` that searches for an item by a given property value.
-  findItem(prop: string , val: string) {
+  findItem(prop: string , val: string): {} {
     let product: {} = {}
     this.items.filter(item => item[prop] == val ? product = item : "")
     return product
   }
   // 6. Implement a method `updateItem` that updates an item by its property value.
-  updateItem(prop: string, id: number, update: T | U) {
+  updateItem(prop: string, id: number, update: T | U): string {
   let message: string = " "
   this.items =  this.items.map(item => {
       if(item[prop] === id ){

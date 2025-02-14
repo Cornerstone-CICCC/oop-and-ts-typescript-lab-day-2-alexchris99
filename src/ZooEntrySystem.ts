@@ -29,7 +29,7 @@ class ZooGuest {
     this.age = age
   }
 
-  enterZoo() {
+  enterZoo(): string {
     // Add welcome message
     return "Welcome to the Zoo !!!"
   }

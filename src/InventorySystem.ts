@@ -20,31 +20,31 @@ class InventoryManager<T extends Product> {
   products: T[] = []
 
   // 2. Implement a method `addProduct` that adds a new product to the inventory. It should return a confirmation string.
-  addProduct(product: T) {
+  addProduct(product: T): string {
     this.products.push(product)
     return `${product.name} added succesfully`
   }
 
   // 3. Implement a method `updateProduct` that updates an existing product’s details. It should return a confirmation string. Use the Partial type for the update parameter since not all details will be updated.
-  updateProduct(id: number, update: Partial<Product>) {
+  updateProduct(id: number, update: Partial<Product>): string {
     this.products.forEach(product => product.id === id ? product.price = update.price : "" )
     return `Product ${id} uppdated`
   }
 
   // 5. Implement a method `getProduct` that retrieves a product by its ID.
-  getProduct(id: number) {
+  getProduct(id: number): string | {} {
     let Rproduct: string | {} = "Product not found"
     this.products.forEach(product => product.id == id ?  Rproduct =  product  :  "Product not Found")
     return Rproduct
   }
 
   // 6. Implement a method `getAllProducts` that returns the list of all products.
-  getAllProducts() {
+  getAllProducts(): {} {
     return this.products
   }
 
   // 4. Implement a method `removeProduct` that removes a product from the inventory and returns a confirmation string.
-  removeProduct(id: number) {
+  removeProduct(id: number): string {
     this.products = this.products.filter(product => product.id !== id ? product : "" )
     return `Product ${id} removed`
   }
