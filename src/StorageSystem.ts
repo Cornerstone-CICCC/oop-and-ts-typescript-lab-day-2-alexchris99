@@ -8,27 +8,51 @@
 // 5. Implement a method `findItem` that searches for an item by a given property value.
 // 6. Implement a method `updateItem` that updates an item by its property value.
 
+// 1. Implement a class `Storage<T, U>` that can store multiple types of data.
 class MyStorage<T, U> {
-  items = []
-
-  addItem(item) {
-
+  items: (T | U)[]= []
+  // 2. Implement a method `addItem` that stores a new item of a generic type.
+  addItem(item: T | U) {
+    let message: string = ''
+    this.items.push(item)
+    if(item["name"]){
+      message = `User ${item["name"]} added to the Storage`
+    }else{
+      message = `${item} added to the Storage`
+    }
+    return message
   }
-
+  // 4. Implement a method `getItems` that returns all stored items.
   getItems() {
-
+    return this.items
   }
-
-  removeItem(id) {
-
+  // 3. Implement a method `removeItem` that removes an item by value.
+  removeItem(id: T | U) {
+    this.items = this.items.filter(item => item !== id)
+    return `${id} removed from the Storage`
   }
-
-  findItem(prop, val) {
-
+  // 5. Implement a method `findItem` that searches for an item by a given property value.
+  findItem(prop: string , val: string) {
+    let product: {} = {}
+    this.items.filter(item => item[prop] == val ? product = item : "")
+    return product
   }
-
-  updateItem(prop, id, update) {
-
+  // 6. Implement a method `updateItem` that updates an item by its property value.
+  updateItem(prop: string, id: number, update: T | U) {
+  let message: string = " "
+  this.items =  this.items.map(item => {
+      if(item[prop] === id ){
+        message = `${update["name"]} succesfully`
+          return{
+            ...update
+          }
+      }else{
+          return{
+            ...item
+          }
+      }
+    })
+    return message
   }
 }
 

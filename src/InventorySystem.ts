@@ -15,27 +15,38 @@ interface Product {
   stock: number;
 }
 
+// 1. Implement a class `InventoryManager<T>` that manages stock for different product types.
 class InventoryManager<T extends Product> {
-  products = []
+  products: T[] = []
 
-  addProduct(product) {
-
+  // 2. Implement a method `addProduct` that adds a new product to the inventory. It should return a confirmation string.
+  addProduct(product: T) {
+    this.products.push(product)
+    return `${product.name} added succesfully`
   }
 
-  updateProduct(id, update) {
-
+  // 3. Implement a method `updateProduct` that updates an existing product’s details. It should return a confirmation string. Use the Partial type for the update parameter since not all details will be updated.
+  updateProduct(id: number, update: Partial<Product>) {
+    this.products.forEach(product => product.id === id ? product.price = update.price : "" )
+    return `Product ${id} uppdated`
   }
 
-  getProduct(id) {
-
+  // 5. Implement a method `getProduct` that retrieves a product by its ID.
+  getProduct(id: number) {
+    let Rproduct: string | {} = "Product not found"
+    this.products.forEach(product => product.id == id ?  Rproduct =  product  :  "Product not Found")
+    return Rproduct
   }
 
+  // 6. Implement a method `getAllProducts` that returns the list of all products.
   getAllProducts() {
-
+    return this.products
   }
 
-  removeProduct(id) {
-
+  // 4. Implement a method `removeProduct` that removes a product from the inventory and returns a confirmation string.
+  removeProduct(id: number) {
+    this.products = this.products.filter(product => product.id !== id ? product : "" )
+    return `Product ${id} removed`
   }
 }
 

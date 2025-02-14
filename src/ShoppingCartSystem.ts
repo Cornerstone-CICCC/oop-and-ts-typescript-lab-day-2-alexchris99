@@ -24,27 +24,57 @@ interface CartItem {
   category: Category;
 }
 
+// 1. Implement a class `ShoppingCart<T>` to handle products in a cart.
 class ShoppingCart<T extends CartItem> {
-  cart = []
+  cart: T[] = []
 
-  addToCart(product) {
-
+  // 2. Implement a method `addToCart` that adds a product to the cart and updates the quantity if it already exists.
+  addToCart(product: T) {
+    if(product.id in this.cart){
+      this.cart.forEach(item => item.id == product.id ? item.quantity+=product.quantity : "")
+    }else{
+      this.cart.push(product)
+    }
+    return `${product.name} added to the cart`
   }
 
-  updateQuantity(id, qty) {
-
+  // 4. Implement a method `updateQuantity` that updates the quantity of a product in the cart.
+  updateQuantity(id: number, qty: number) {
+    let message: string = ""
+    this.cart.forEach(item => {
+      if(item.id === id){
+        item.quantity = qty 
+        message = `Uppdated quantity of ${item.name} to ${qty}`
+      }
+    })
+    return message
   }
 
+  // 6. Implement a method `getTotalPrice` that returns the total cost of all items in the cart.
   getTotalPrice() {
-
+    let total: number = 0
+    this.cart.forEach( item => total += (item.price * item.quantity))
+    return `The total from your cart is $${total}`
   }
 
-  getProductsOfCategory(category) {
-
+  // 5. Implement a method `getProductsOfCategory` that accepts a string and returns an array of items from the cart that match that category.
+  getProductsOfCategory(category: string) {
+    return this.cart.filter(item => item.category === category)
   }
 
-  removeFromCart(id) {
-
+  // 3. Implement a method `removeFromCart` that removes a product from the cart completely.
+  removeFromCart(id: number) {
+    let message: string =""
+    this.cart = this.cart.filter(item => {
+      if(item.id !== id ){
+        return{
+          ...item
+        }
+      }else{
+        message =`${item.name} removed from cart`
+      }
+    })
+    return message
   }
 }
 
